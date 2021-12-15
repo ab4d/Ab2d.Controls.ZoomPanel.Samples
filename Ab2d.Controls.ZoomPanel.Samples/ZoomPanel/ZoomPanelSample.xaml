@@ -1,0 +1,76 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.ZoomPanelSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Title="ZoomPanelSample">
+    <Grid Name="MainGrid">
+        <ab2d:ZoomPanel Name="ZoomPanel1"
+                        ZoomMode="Move"
+                        Stretch="{Binding ElementName=StretchComboBox, Path=Text}"
+                        RotationAngle="{Binding ElementName=RotationAngleSlider, Path=Value, Mode=TwoWay}"
+                        IsMouseWheelZoomEnabled="{Binding ElementName=IsMouseWheelZoomEnabledCheckBox, Path=IsChecked}"  
+                        IsZoomPositionPreserved="{Binding ElementName=IsZoomPositionPreservedCheckBox, Path=IsChecked}"
+                        IsAnimated="{Binding ElementName=IsAnimatedCheckBox, Path=IsChecked}" IsPanningAnimated="False" 
+                        AnimationDuration="{Binding ElementName=DurationTextBox, Path=Text}">
+            <Frame Name="ZoomPanelContentFrame" Source="/Resources/tiger.xaml" NavigationUIVisibility="Hidden"/>
+        </ab2d:ZoomPanel>
+
+        <Border Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="White" BorderBrush="Gray" BorderThickness="2">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <TextBlock FontWeight="Bold" Margin="0 0 0 2">ZoomPanelMiniMap:</TextBlock>
+                <ab2d:ZoomPanelMiniMap TargetZoomPanel="{Binding ElementName=ZoomPanel1}" Width="120" Height="120" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#AAFFFFFF">
+            <TextBlock FontWeight="Bold">ZoomPanel's content:</TextBlock>
+            <ListBox Name="SceneListBox" SelectionChanged="SceneListBox_SelectionChanged" SelectedIndex="0">
+                <ListBoxItem>Tiger</ListBoxItem>
+                <ListBoxItem>Conference Hall</ListBoxItem>
+                <ListBoxItem>Airbus Seatmap</ListBoxItem>
+                <ListBoxItem>Hangar</ListBoxItem>
+                <ListBoxItem>Airport map</ListBoxItem>
+                <ListBoxItem>Stadium (complex)</ListBoxItem>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#AAFFFFFF">
+            <!-- Three possibilities to set ZoomPanel - all with the same results -->
+            
+            <!-- Setting TargetZoomPanel -->
+            <!--<ab2d:ZoomController Name="TestZoomController1" TargetZoomPanel="{Binding ElementName=ZoomPanel1}" HorizontalAlignment="Right"/>-->
+            
+            <!-- Setting TargetZoomPanelName -->
+            <!--<ab2d:ZoomController Name="TestZoomController2" TargetZoomPanelName="ZoomPanel1" HorizontalAlignment="Right"/>-->
+            
+            <!-- ZoomPanel is automaticaly discovered -->
+            <ab2d:ZoomController Name="TestZoomController3" HorizontalAlignment="Right"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Margin="5 0">
+                <TextBlock VerticalAlignment="Center" Text="Stretch:"/>
+                <ComboBox Name="StretchComboBox" Margin="5 0 0 0" Width="100" SelectedIndex="1">
+                    <ComboBoxItem>None</ComboBoxItem>
+                    <ComboBoxItem>Uniform</ComboBoxItem>
+                    <ComboBoxItem>UniformToFill</ComboBoxItem>
+                    <ComboBoxItem>Fill</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <CheckBox Name="IsZoomPositionPreservedCheckBox" Margin="0 5 0 2" IsChecked="True" HorizontalAlignment="Right"
+                      ToolTip="IsZoomPositionPreserved property specifies if the position&#x0a;of the point where zooming in or out occurs is preserved.">IsZoomPositionPreserved</CheckBox>
+            <CheckBox Name="IsMouseWheelZoomEnabledCheckBox" Margin="0 2" IsChecked="True" HorizontalAlignment="Right">Mouse Wheel Zoom</CheckBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>Duration:</Label>
+                <TextBox Name="DurationTextBox" Width="60" Height="20">0:0:0.2</TextBox>
+            </StackPanel>
+            <CheckBox Name="IsAnimatedCheckBox" IsChecked="True" Margin="0 2" HorizontalAlignment="Right">Is Animated</CheckBox>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
+                <TextBlock Text="Rotation:" HorizontalAlignment="Right"/>
+                <!-- NOTE: StringFormat is only available in .Net 3.5 SP1 and higher - delete it if the code does not compile -->
+                <TextBlock Text="{Binding ElementName=RotationAngleSlider,Path=Value, StringFormat=F1}" Width="30" Margin="5 0 0 0"/>
+            </StackPanel>
+
+            <Slider Name="RotationAngleSlider" Minimum="-180" Maximum="180" Value="0" Width="82" TickPlacement="BottomRight" TickFrequency="90" HorizontalAlignment="Right"/>
+        </StackPanel>
+    </Grid>
+</Page>

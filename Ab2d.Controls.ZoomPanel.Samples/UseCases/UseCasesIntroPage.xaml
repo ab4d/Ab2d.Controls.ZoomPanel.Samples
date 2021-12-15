@@ -1,0 +1,55 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.UseCases.UseCasesIntroPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:common="clr-namespace:Ab3d.PowerToys.Samples.Common"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+    Title="UseCasesIntroPage">
+  <Page.Background>
+    <LinearGradientBrush  StartPoint="0,1" EndPoint="0,0">
+      <GradientStop Color="#FCCC" Offset="0"/>
+      <GradientStop Color="#FFFFFFFF" Offset=".5"/>
+    </LinearGradientBrush>
+  </Page.Background>
+    <Grid ClipToBounds="True">
+        <Image Width="400" VerticalAlignment="Bottom" HorizontalAlignment="Right" Opacity="0.5" Source="{StaticResource ZoomPanelImage}">
+            <Image.RenderTransform>
+                <TranslateTransform X="30" Y="160"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Opacity)" From="0.0" To="0.5" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="20 16 20 10">
+                <!-- NOTE: In the previous versions of the samples FlowDocumentReader was used to show info pages. But because this control always thrown an exception that 'PresentationUI.Aero2' was not found (the exception was handled by .Net code, but it always stopped the debugger if stop on exception was turned on), I have upgraded TextBlock to add some additional markup. -->
+                <common:TextBlockEx Style="{StaticResource InfoTitle}" Foreground="Black">\!Use Cases\!</common:TextBlockEx>
+                <common:TextBlockEx Style="{StaticResource InfoContent}" Foreground="Black">
+                    The Use Cases show the ZoomPanel in action in simplified versions of real world applications.\n
+                    \n
+                    \n
+                    The following use cases are available:\n
+                    \n
+                    \*\!Painter sample\! shows how simple is to add zooming and panning to a drawing application that are the same or even better as in some of the best professional drawing applications.\n
+                    \n
+                    \*\!Document browser\! shows how to create a WPF application to browser documents that were scaned or recieved by fax. The sample is using a ZoomPanel control to allow users to see the whole document or observe the details with zooming into the document.\n
+                    \n
+                    \*\!Image browser\! shows how simple is to add zooming and panning to image browser application.\n
+                    \n
+                    \*\!Zoom to objects\! sample demonstrates how easy is to create animated zooming that once zooms to one object and than to another.\n
+                    \n
+                    \*\!Multi-touch\! sample shows how to use \!touch\! and \!multi-touch\! gesture with ZoomPanel.\n
+                </common:TextBlockEx>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

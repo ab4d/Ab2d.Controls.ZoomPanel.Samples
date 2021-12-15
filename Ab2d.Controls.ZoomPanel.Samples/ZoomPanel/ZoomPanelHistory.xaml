@@ -1,0 +1,62 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.ZoomPanelHistory"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="300"
+	Title="ZoomPanelHistory">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ab2d:ZoomPanel Name="ZoomPanel1" Grid.Column="0" ZoomMode="Move" IsHistoryEnabled="true">
+            <Frame Name="ZoomPanelContentFrame" Source="/Resources/tiger.xaml" NavigationUIVisibility="Hidden"/>
+        </ab2d:ZoomPanel>
+
+        <Border  Grid.Column="1" Background="#FFEEEEEE">
+            <StackPanel Orientation="Vertical" Margin="10 5">
+                <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">ZoomPanelController:</TextBlock>
+                <ab2d:ZoomController Name="TestZoomController3" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="RotateRightButton" Width="70" Content="Rotate left" Click="RotateRightButton_Click"/>
+                    <Button Name="RotateLeftButton" Width="70" Margin="5 0" Content="Rotate right" Click="RotateLeftButton_Click"/>
+                </StackPanel>
+                
+                <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">History navigation:</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="BackButton" Width="70" Margin="5 0" Content="&lt; Back" IsEnabled="{Binding ElementName=ZoomPanel1, Path=HistoryItems.IsBackAvailable}" Click="BackButton_Click"/>
+                    <Button Name="NextButton" Width="70" Margin="0 0 5 0" Content="Next &gt;" IsEnabled="{Binding ElementName=ZoomPanel1, Path=HistoryItems.IsNextAvailable}" Click="NextButton_Click"/>
+                </StackPanel>
+
+                <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">Current values:</TextBlock>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" Grid.Row="0" Margin="0 0 5 0" Text="Viewbox:"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Margin="0 0 5 0" Text="RotationAngle:"/>
+
+                    <TextBlock Name="CurrentViewboxTextBlock" Grid.Column="1" Grid.Row="0" Text="0 0 1 1"/>
+                    <TextBlock Name="CurrentRotationAngleTextBlock" Grid.Column="1" Grid.Row="1" Text="0"/>
+                </Grid>
+                
+                <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">History items:</TextBlock>
+                <TextBlock >(viewbox) RotationAngle</TextBlock>
+                <TextBox Name="ItemsTextBox" Width="200" Height="200" FontSize="10" FontFamily="Courier New" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" Text=""/>
+                <Button Name="CleanButton" Width="90" HorizontalAlignment="Left" Click="CleanButton_Click">Clean history</Button>
+                
+                <TextBlock Name="MaxItemsTextBlock" Margin="0 15 0 0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

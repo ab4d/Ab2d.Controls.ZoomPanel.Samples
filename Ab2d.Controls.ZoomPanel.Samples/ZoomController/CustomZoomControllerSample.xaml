@@ -1,0 +1,19 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomController.CustomZoomControllerSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Title="CustomZoomControllerSample">
+    <Grid>
+        <ab2d:ZoomPanel Name="ZoomPanel1" Background="White" IsAnimated="True" IsPanningAnimated="False" IsToggleZoomModeEnabled="False" AnimationDuration="0:0:0.2">
+            <Frame Background="White" Source="/Resources/tiger.xaml" />
+        </ab2d:ZoomPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Command="{x:Static ab2d:ZoomPanel.SetNoneZoomModeCommand}" CommandTarget="{Binding ElementName=ZoomPanel1}">None</Button>
+            <Button Command="{x:Static ab2d:ZoomPanel.SetMoveModeCommand}" CommandTarget="{Binding ElementName=ZoomPanel1}">Move</Button>
+            <Button Command="{x:Static ab2d:ZoomPanel.SetRectangleModeCommand}" CommandTarget="{Binding ElementName=ZoomPanel1}">Rectangle</Button>
+            <Button Command="{x:Static ab2d:ZoomPanel.SetZoomInModeCommand}" CommandTarget="{Binding ElementName=ZoomPanel1}">ZoomIn</Button>
+            <Button Command="{x:Static ab2d:ZoomPanel.SetZoomOutModeCommand}" CommandTarget="{Binding ElementName=ZoomPanel1}">ZoomOut</Button>
+            <Button Command="{x:Static ab2d:ZoomPanel.ResetCommand}" CommandTarget="{Binding ElementName=ZoomPanel1}">Reset</Button>
+        </StackPanel>
+    </Grid>
+</Page>

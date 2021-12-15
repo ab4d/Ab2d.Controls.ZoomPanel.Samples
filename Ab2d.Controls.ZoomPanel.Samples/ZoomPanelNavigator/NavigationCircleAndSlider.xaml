@@ -1,0 +1,49 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanelNavigator.NavigationCircleAndSlider"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="500"
+	Title="NavigationCircleAndSlider">
+    <Page.CommandBindings>
+        <CommandBinding Command="ab2d:ZoomPanel.MoveLeftCommand" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="ab2d:ZoomPanel.MoveRightCommand" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="ab2d:ZoomPanel.MoveUpCommand" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="ab2d:ZoomPanel.MoveDownCommand" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="ab2d:ZoomPanel.ResetCommand" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="Bold" HorizontalAlignment="Center" Text="NavigationCircle"/>
+        <ab2d:NavigationCircle Grid.Column="0" Grid.Row="1" />
+        <TextBox Name="CircleTextBox" Grid.Column="0" Grid.Row="2" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
+            <Run FontWeight="Bold">NavigationSlider</Run>
+            <LineBreak/>
+            <Run>Orientation="Vertical"</Run>
+        </TextBlock>
+        <ab2d:NavigationSlider Name="VerticalSlider" Grid.Column="1" Grid.Row="1" Margin="0 10 0 0" Height="150" ValueChanged="VerticalSlider_ValueChanged"/>
+        <TextBox Name="VerticalSliderTextBox" Grid.Column="1" Grid.Row="2" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+        
+        <TextBlock Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center">
+            <Run FontWeight="Bold">NavigationSlider</Run>
+            <LineBreak/>
+            <Run>Orientation="Horizontal"</Run>
+        </TextBlock>
+        <ab2d:NavigationSlider Name="HorizontalSlider" Grid.Column="2" Grid.Row="1" Width="150" Orientation="Horizontal" ValueChanged="HorizontalSlider_ValueChanged"/>
+        <TextBox Name="HorizontalSliderTextBox" Grid.Column="2" Grid.Row="2" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>        
+    </Grid>
+</Page>

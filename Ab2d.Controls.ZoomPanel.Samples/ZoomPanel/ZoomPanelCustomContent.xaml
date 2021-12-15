@@ -1,0 +1,43 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.ZoomPanelCustomContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Title="ZoomPanelCustomContent">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityOfBool" />
+    </Page.Resources>    
+    <Grid>
+        <ab2d:ZoomPanel Name="ZoomPanel1" Background="White"
+                        IsAnimated="{Binding ElementName=IsAnimatedCheckBox, Path=IsChecked}" IsPanningAnimated="False" AnimationDuration="0:0:0.5"
+                        IsZoomPositionPreserved="True"
+                        Viewbox="0 0 1 1"
+                        ViewboxLimits="0 0 1 1" ViewboxMinSize="0.01 0.01" IsViewboxLimited="True"
+                        RectangleFill="#55777777" RectangleStroke="#CCCCCC"
+                        ZoomMode="Move">
+            <!--Viewbox="0.15 0.15 0.7 0.7"-->
+        </ab2d:ZoomPanel>
+        <!--<Grid Name="ImageGrid" Background="LightBlue"/>-->
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <ab2d:ZoomController Name="TestZoomController3" HorizontalAlignment="Right"/>
+            <StackPanel Orientation="Horizontal" Background="White" HorizontalAlignment="Right">
+                <CheckBox Name="ShowInfoCheckBox" IsChecked="False" Margin="2"/>
+                <TextBlock Background="White" Margin="3 0">Show more info</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="White" HorizontalAlignment="Right">
+                <CheckBox Name="IsAnimatedCheckBox" Margin="2" IsChecked="True"/>
+                <TextBlock Background="White" Margin="3 0">Is Animated</TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <ab2d:ZoomPanelNavigator Name="ZoomPanelNavigator1" MinZoomFactor="1" MaxZoomFactor="7" ZoomFactor="1" IsSnapToTickEnabled="True"
+                                 Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+
+        <Border HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#33000000" BorderBrush="Gray" BorderThickness="2"  Margin="0 0 0 30"
+                Visibility="{Binding ElementName=ShowInfoCheckBox, Path=IsChecked, Converter={StaticResource VisibilityOfBool}}" >
+            <StackPanel Orientation="Vertical">
+                <ab2d:ZoomPanelDump Foreground="White" ShowAdditionalInfo="False" ZoomPanel="{Binding ElementName=ZoomPanel1}"/>
+                <TextBlock Name="InfoTextBlock" Foreground="White" Margin="5 10 5 5" />
+            </StackPanel>
+        </Border>        
+    </Grid>
+</Page>

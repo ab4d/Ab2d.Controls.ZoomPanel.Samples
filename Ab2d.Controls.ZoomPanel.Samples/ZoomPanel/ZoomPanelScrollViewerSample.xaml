@@ -1,0 +1,46 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.ZoomPanelScrollViewerSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel" 
+    Loaded="Page_Loaded" Title="ZoomPanelScrollViewerSample">
+    <Grid>
+        <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Margin="0 0 0 20">
+            <ab2d:ZoomPanel Name="ZoomPanel1" Background="White"
+                            IsMouseWheelZoomEnabled="{Binding ElementName=IsMouseWheelZoomEnabledCheckBox, Path=IsChecked}"  
+                            IsAnimated="{Binding ElementName=IsAnimatedCheckBox, Path=IsChecked}" IsPanningAnimated="False" 
+                            AnimationDuration="{Binding ElementName=DurationTextBox, Path=Text}">
+                <Frame Name="ZoomPanelContentFrame" Source="/Resources/hangar_1.xaml" NavigationUIVisibility="Hidden"/>
+            </ab2d:ZoomPanel>
+        </ScrollViewer>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#AAFFFFFF">
+            <TextBlock FontWeight="Bold">ZoomPanel's content:</TextBlock>
+            <ListBox Name="SceneListBox" SelectionChanged="SceneListBox_SelectionChanged" SelectedIndex="3">
+                <ListBoxItem>Tiger</ListBoxItem>
+                <ListBoxItem>Conference Hall</ListBoxItem>
+                <ListBoxItem>Airbus Seatmap</ListBoxItem>
+                <ListBoxItem>Hangar</ListBoxItem>
+                <ListBoxItem>Airport map</ListBoxItem>
+                <ListBoxItem>Stadium (complex)</ListBoxItem>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 20 0" Background="#AAFFFFFF">
+            <!-- Three possibilities to set ZoomPanel - all with the same results -->
+
+            <!-- Setting TargetZoomPanel -->
+            <!--<ab2d:ZoomController Name="TestZoomController1" TargetZoomPanel="{Binding ElementName=ZoomPanel1} HorizontalAlignment="Right""/>-->
+
+            <!-- Setting TargetZoomPanelName -->
+            <!--<ab2d:ZoomController Name="TestZoomController2" TargetZoomPanelName="ZoomPanel1" HorizontalAlignment="Right"/>-->
+
+            <!-- ZoomPanel is automaticaly discovered -->
+            <ab2d:ZoomController Name="TestZoomController3" HorizontalAlignment="Right"/>
+            <CheckBox Name="IsMouseWheelZoomEnabledCheckBox" IsChecked="True" HorizontalAlignment="Right">Mouse Wheel Zoom / Scroll</CheckBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>Duration:</Label>
+                <TextBox Name="DurationTextBox" Width="60" Height="20">0:0:0.2</TextBox>
+            </StackPanel>
+            <CheckBox Name="IsAnimatedCheckBox" IsChecked="True" HorizontalAlignment="Right">Is Animated</CheckBox>
+        </StackPanel>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold" Text="IMPORTANT NOTICE: To enable ZoomPanel to control the ScrollViewer, the CanContentScroll property on ScrollViewer must be set to True!"/>
+    </Grid>
+</Page>

@@ -1,0 +1,109 @@
+﻿<Window x:Class="Ab2d.ZoomControlSample.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:Ab2d.ZoomControlSample"
+    xmlns:common="clr-namespace:Ab2d.ZoomControlSample.Common"
+    Title="Ab2d.Controls.ZoomPanel sample"
+    Icon="ZoomPanel.png"
+    Background="{DynamicResource BackgroundBrush}">
+    <Window.Resources>
+       
+        <SolidColorBrush x:Key="BackgroundBrush">#333</SolidColorBrush>
+        <SolidColorBrush x:Key="SelectedBrush">#FFBC57</SolidColorBrush>
+        <SolidColorBrush x:Key="ForegroundBrush">#CCC</SolidColorBrush>
+        <SolidColorBrush x:Key="HeaderBrush">#EEE</SolidColorBrush>
+        
+        <local:IsStringEmptyConverter x:Key="IsStringEmptyConverter"/>
+        <local:LineBreakableStringConverter x:Key="LineBreakableStringConverter"/>
+
+        <XmlDataProvider x:Key="SamplesXml" Source="Samples.xml"/>
+
+        <DataTemplate x:Key="SamplesTemplate">
+            <TextBlock x:Name="MainTextBlock" FontSize="14" Cursor="Hand" Foreground="{StaticResource ForegroundBrush}" FontWeight="Normal" Margin="10 0 0 0" Text="{Binding XPath=@Title}"/>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding XPath=@IsTitle}" Value="True">
+                    <DataTrigger.Setters>
+                        <Setter TargetName="MainTextBlock" Property="FontWeight" Value="Bold"/>
+                        <Setter TargetName="MainTextBlock" Property="Margin" Value="0 5 0 0"/>
+                        <Setter TargetName="MainTextBlock" Property="Foreground" Value="{StaticResource HeaderBrush}"/>
+                    </DataTrigger.Setters>
+                </DataTrigger>          
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <Style x:Key="SimpleListBoxItem" TargetType="ListBoxItem">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid Name="grid"  Margin="3 0">
+                            <Path Name="arrow" HorizontalAlignment="Left" VerticalAlignment="Center" Data="M1,4L4.5,7.5 1,11" 
+                                  SnapsToDevicePixels="False" Stroke="{StaticResource SelectedBrush}" StrokeThickness="2" Visibility="Collapsed"/>                                
+                            <ContentPresenter Margin="9 0 0 0"/>
+                            <Rectangle Name="bottomLine" SnapsToDevicePixels="True" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                                       Height="1" Fill="{StaticResource SelectedBrush}" Visibility="Collapsed"/> 
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="arrow" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="bottomLine" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding XPath=@IsSeparator}" Value="True">
+                                <DataTrigger.Setters>
+                                    <Setter TargetName="grid" Property="Margin" Value="3 0 0 8"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="5,3,5,7">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Name="SampleListScrollViewer" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="0 0 5 5" VerticalAlignment="Center" 
+                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+
+            <StackPanel Orientation="Vertical">
+                <Image Name="LogoImage" Source="Resources/ab4d-logo.png" Width="128" Height="35" Margin="15 5 0 0" HorizontalAlignment="Left" Cursor="Hand" MouseUp="LogoImage_OnMouseUp"
+                       ToolTip="Click to visit the AB4D company web site"/>
+
+                <ListBox Name="SampleList"
+	             SelectedIndex="0"
+                 ItemsSource="{Binding Source={StaticResource SamplesXml}, XPath=Samples/Sample}"
+                 ItemTemplate="{StaticResource SamplesTemplate}"    
+                 ItemContainerStyle="{StaticResource SimpleListBoxItem}" 
+                 Background="{StaticResource BackgroundBrush}"
+                 BorderThickness="1"
+                 BorderBrush="{StaticResource BackgroundBrush}"
+	             Padding="5"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <common:FeedbackControl Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0 0 10 -3"/>
+
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="2" Margin="5" Padding="10" Background="White"
+                DataContext="{Binding ElementName=SampleList, Path=SelectedItem}">
+            <DockPanel>
+                <Expander Name="DescriptionExpander" DockPanel.Dock="Bottom" 
+                          Style="{StaticResource MyExpanderStyle}"
+                          Header="Description" IsExpanded="True" Padding="0"
+                          Visibility="{Binding Converter={StaticResource IsStringEmptyConverter}}">
+                    <TextBlock Name="DescriptionTextBlock" MaxWidth="700" DataContextChanged="TextBlock_DataContextChanged"
+							   TextWrapping="Wrap" TextAlignment="Left" FontSize="12"/> 
+                </Expander>
+                <Frame Name="ContentFrame" Source="{Binding XPath=@Page}" NavigationUIVisibility="Hidden" Navigated="ContentFrame_OnNavigated" Focusable="false"/>
+            </DockPanel>
+        </Border>
+
+    </Grid>
+</Window>

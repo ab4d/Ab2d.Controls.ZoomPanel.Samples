@@ -1,0 +1,79 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.MiniMap.BaseMiniMapSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"       
+    Title="BaseMiniMapSample">
+    <Grid Name="RootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Name="OptionsStackPanel" Orientation="Vertical" Grid.Column="0" Margin="5">
+            <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">MapImageElement:</TextBlock>
+            <ComboBox Name="ImageCombobox" SelectedIndex="0" SelectionChanged="ImageCombobox_SelectionChanged">
+                <ComboBoxItem>Content as PreviewCanvas</ComboBoxItem>
+                <ComboBoxItem>Rendered PreviewCanvas</ComboBoxItem>
+                <ComboBoxItem>Image</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Margin="0 20 0 0" FontSize="12" FontWeight="Bold">Viewbox:</TextBlock>
+            <TextBox Name="ViewboxTextBox" FontSize="14" TextChanged="ViewboxTextBox_TextChanged" Height="23.331" Width="160">0.25 0.25 0.5 0.5</TextBox>
+            
+            <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">RotationAngle:</TextBlock>
+            
+            <StackPanel Orientation="Horizontal">
+                <Slider Name="RotationAngleSlider" Minimum="-180" Maximum="180" Value="0" Width="130" TickPlacement="BottomRight" TickFrequency="90"/>
+                <!-- NOTE: StringFormat is only available in .Net 3.5 SP1 and higher - delete it if the code does not compile -->
+                <TextBlock Text="{Binding ElementName=RotationAngleSlider,Path=Value, StringFormat=F1}" Width="40"/>
+            </StackPanel>
+
+            <TextBlock Margin="0 20 0 0" FontSize="12" FontWeight="Bold">RectangleStroke:</TextBlock>
+            <ComboBox Name="RectangleStrokeCombobox" SelectedIndex="0" SelectionChanged="RectangleStrokeCombobox_SelectionChanged">
+                <ComboBoxItem>Red</ComboBoxItem>
+                <ComboBoxItem>Blue</ComboBoxItem>
+                <ComboBoxItem>Black</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">RectangleStrokeThickness:</TextBlock>
+            <ComboBox Name="RectangleStrokeThicknessCombobox" SelectedIndex="1" SelectionChanged="RectangleStrokeThicknessCombobox_SelectionChanged">
+                <ComboBoxItem>0</ComboBoxItem>
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">MaskBrush:</TextBlock>
+            <ComboBox Name="MaskBrushCombobox" SelectedIndex="1" SelectionChanged="MaskBrushCombobox_SelectionChanged">
+                <ComboBoxItem>Transparent (none)</ComboBoxItem>
+                <ComboBoxItem>#55000000 (darken)</ComboBoxItem>
+                <ComboBoxItem>#22FFFFFF (lighten)</ComboBoxItem>
+                <ComboBoxItem>#55FF0000 (red)</ComboBoxItem>
+            </ComboBox>
+            
+            <TextBlock Margin="0 20 0 0" FontSize="12" FontWeight="Bold">ViewboxChanged event:</TextBlock>
+            <TextBox Name="ViewboxChangedTextBlock" Height="150" VerticalScrollBarVisibility="Auto"/>
+
+            <CheckBox Name="IsMovingViewboxEnabledCheckbox" Margin="0 10 0 0" IsChecked="True">IsMovingViewboxEnabled</CheckBox>
+            <CheckBox Name="PreventViewboxEnabledCheckbox" IsChecked="False">Prevent Viewbox change</CheckBox>
+        </StackPanel>
+        
+        <Border Name="PreviewBorder" Grid.Column="1" BorderBrush="Gray" BorderThickness="2" Margin="5">
+            <Canvas Name="PreviewCanvas"/>
+        </Border>
+
+        <Border Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" Background="White" BorderBrush="Gray" BorderThickness="2">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <TextBlock FontWeight="Bold" Margin="0 0 0 2">BaseMiniMap:</TextBlock>
+                <ab2d:BaseMiniMap Name="MiniMap1" 
+                                  Background="White" BorderBrush="Black" BorderThickness="1"
+                                  Viewbox="0.25 0.25 0.5 0.5"
+                                  ViewboxRotationAngle="{Binding ElementName=RotationAngleSlider,Path=Value}"
+                                  IsMovingViewboxEnabled="{Binding ElementName=IsMovingViewboxEnabledCheckbox,Path=IsChecked}"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Page>
+
+
+    

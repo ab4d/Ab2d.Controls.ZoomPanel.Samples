@@ -1,0 +1,62 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.UseCases.ZoomToObjectSample"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+	Title="ZoomToControlSample">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <ab2d:ZoomPanel Name="ZoomPanel1" Grid.Column="0" Background="White"
+                        IsAnimated="True" ZoomMode="Move"
+                        AnimationDuration="{Binding ElementName=DurationTextBox, Path=Text}"
+                        ViewboxLimits="0 0 1 1" IsViewboxLimited="{Binding ElementName=IsViewboxLimitedCheckBox, Path=IsChecked}">
+            <Canvas Name="ContentCanvas"/>
+        </ab2d:ZoomPanel>
+
+        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <!--<TextBlock FontSize="12" FontWeight="Bold" Text="Selected object:"/>-->
+                
+                    <ListBox Name="ObjectsListBox" Margin="0 5 0 0" FontSize="11" SelectionChanged="ObjectsListBox_SelectionChanged"/>
+                
+                    <TextBlock Margin="0 15 0 0" Text="Zoom Margin:"/>
+                    <ComboBox Name="MarginComboBox" SelectedIndex="4" Width="80" HorizontalAlignment="Left" SelectionChanged="MarginComboBox_SelectionChanged">
+                        <ComboBoxItem>0</ComboBoxItem>
+                        <ComboBoxItem>20</ComboBoxItem>
+                        <ComboBoxItem>50</ComboBoxItem>
+                        <ComboBoxItem>100</ComboBoxItem>
+                        <ComboBoxItem>200</ComboBoxItem>
+                    </ComboBox>
+
+                    <TextBlock Margin="0 2 0 0" TextWrapping="Wrap" Foreground="DimGray" FontSize="11" Text="Margin defines how much space is visible around selected object."/>
+
+                    <CheckBox Name="IsViewboxLimitedCheckBox" IsChecked="False" Margin="0 20 0 0">IsViewboxLimited</CheckBox>
+                    <TextBlock Margin="0 2 0 0" TextWrapping="Wrap" Foreground="DimGray" FontSize="11" Text="If Viewbox is limited than the objects that are close to the border will not be centered because ZoomPanel will limit zooming to ViewboxLimits property."/>
+                
+                    <TextBlock Margin="0 10 0 0" Text="Animation Duration (h:m:s):"/>
+                    <TextBox Name="DurationTextBox" Width="60" HorizontalAlignment="Left" Height="20">0:0:1.0</TextBox>
+                
+                    <CheckBox Name="UseCustomAnimaitonCheckBox" IsChecked="True" Margin="0 10 0 0">Use custom animation</CheckBox>
+
+                    <TextBlock Margin="0 5 0 0" Text="ZoomOut factor:"/>
+                    <ComboBox Name="ZoomOutComboBox" SelectedIndex="2" Width="80" IsEnabled="{Binding ElementName=UseCustomAnimaitonCheckBox, Path=IsChecked}" HorizontalAlignment="Left" SelectionChanged="ZoomOutComboBox_SelectionChanged">
+                        <ComboBoxItem>0</ComboBoxItem>
+                        <ComboBoxItem>0.2</ComboBoxItem>
+                        <ComboBoxItem>0.5</ComboBoxItem>
+                        <ComboBoxItem>0.7</ComboBoxItem>
+                        <ComboBoxItem>1.0</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Page>

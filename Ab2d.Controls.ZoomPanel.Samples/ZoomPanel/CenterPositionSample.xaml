@@ -1,0 +1,117 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.CenterPositionSample"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+      xmlns:common="clr-namespace:Ab2d.ZoomControlSample.Common"       
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="CenterPositionSample">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>     
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="2">
+            <Grid>
+                <ab2d:ZoomPanel ZoomMode="Move" CenterPosition="0.5 0.5" Margin="0 35 0 0">
+                    <common:SampleGrid Width="100" Height="100"/>
+                </ab2d:ZoomPanel>
+
+                <!-- Show center position of the ZoomPanel -->
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0 35 0 0" Width="1" SnapsToDevicePixels="True" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 35 0 0" Height="1" SnapsToDevicePixels="True" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 35 0 0" Width="10" Height="10" IsHitTestVisible="False" Stroke="#99FF0000" StrokeThickness="1"/>
+
+                <TextBlock FontWeight="Bold" Margin="5 2 0 0">CenterPosition=&quot;0.5 0.5&quot;<LineBreak/>CenterPositionUnits=&quot;Relative&quot;</TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="2">
+            <Grid>
+                <ab2d:ZoomPanel ZoomMode="Move" CenterPosition="0.2 0.4" Margin="0 35 0 0">
+                    <common:SampleGrid Width="100" Height="100"/>
+                </ab2d:ZoomPanel>
+
+                <!-- Show center position of the ZoomPanel -->
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0 35 0 0" Width="1" SnapsToDevicePixels="True" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 35 0 0" Height="1" SnapsToDevicePixels="True" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 35 0 0" Width="10" Height="10" IsHitTestVisible="False" Stroke="#99FF0000" StrokeThickness="1"/>
+
+                <TextBlock FontWeight="Bold" Margin="5 2 0 0">CenterPosition=&quot;0.2 0.4&quot;<LineBreak/>CenterPositionUnits=&quot;Relative&quot;</TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="2">
+            <Grid>
+                <ab2d:ZoomPanel ZoomMode="Move" CenterPosition="50 50" CenterPositionUnits="Absolute" Margin="0 35 0 0">
+                    <common:SampleGrid Width="100" Height="100"/>
+                </ab2d:ZoomPanel>
+
+                <!-- Show center position of the ZoomPanel -->
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0 35 0 0" Width="1" SnapsToDevicePixels="True" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 35 0 0" Height="1" SnapsToDevicePixels="True" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 35 0 0" Width="10" Height="10" IsHitTestVisible="False" Stroke="#99FF0000" StrokeThickness="1"/>
+
+                <TextBlock FontWeight="Bold" Margin="5 2 0 0">CenterPosition=&quot;50 50&quot;<LineBreak/>CenterPositionUnits=&quot;Absolute&quot;</TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="2">
+            <Grid>
+                <ab2d:ZoomPanel ZoomMode="Move" CenterPosition="20 40" CenterPositionUnits="Absolute" Margin="0 35 0 0">
+                    <common:SampleGrid Width="100" Height="100"/>
+                </ab2d:ZoomPanel>
+
+                <!-- Show center position of the ZoomPanel -->
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0 35 0 0" Width="1" SnapsToDevicePixels="True" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 35 0 0" Height="1" SnapsToDevicePixels="True" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 35 0 0" Width="10" Height="10" IsHitTestVisible="False" Stroke="#99FF0000" StrokeThickness="1"/>
+
+                <TextBlock FontWeight="Bold" Margin="5 2 0 0">CenterPosition=&quot;20 40&quot;<LineBreak/>CenterPositionUnits=&quot;Absolute&quot;</TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="2">
+            <Grid>
+                <ab2d:ZoomPanel Name="CustomZoomPanel" ZoomMode="Move" CenterPosition="0.5 0.5" CenterPositionUnits="Relative" Margin="0 40 0 0">
+                    <common:SampleGrid Width="100" Height="100"/>
+                </ab2d:ZoomPanel>
+
+                <!-- Show center position of the ZoomPanel -->
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0 40 0 0" SnapsToDevicePixels="True" Width="1" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 40 0 0" SnapsToDevicePixels="True" Height="1" IsHitTestVisible="False" Fill="#99FF0000"/>
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 40 0 0" Width="10" Height="10" IsHitTestVisible="False" Stroke="#99FF0000" StrokeThickness="1"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock FontWeight="Bold" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="5 0">CenterPosition:</TextBlock>
+                    <TextBlock FontWeight="Bold" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Margin="5 0">CenterPositionUnits:</TextBlock>
+                    
+                    <TextBox Name="CenterPositionTextBox" Grid.Column="1" Grid.Row="0" Width="70" HorizontalAlignment="Left" TextChanged="CenterPositionTextBox_TextChanged" Text="0.5 0.5"/>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <RadioButton Name="RelativeRadioButton" IsChecked="True" GroupName="UnitsGroup" Checked="RelativeRadioButton_Checked">Relative</RadioButton>
+                        <RadioButton Name="AbsoluteRadioButton" Margin="5 0 0 0" GroupName="UnitsGroup" Checked="AbsoluteRadioButton_Checked">Absolute</RadioButton>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

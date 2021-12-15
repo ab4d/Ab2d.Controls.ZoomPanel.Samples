@@ -1,0 +1,13 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.LimitedZooming"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Title="LimitedZooming">
+    <Grid>
+        <ab2d:ZoomPanel Name="ZoomPanel1" ZoomMode="Move" PreviewViewboxChanged="ZoomPanel1_PreviewViewboxChanged">
+            <Frame Name="ZoomPanelContentFrame" Source="/Resources/conferenze_2d_5.xaml" NavigationUIVisibility="Hidden"/>
+        </ab2d:ZoomPanel>
+
+        <ab2d:ZoomController Name="ZoomController" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+    </Grid>
+</Page>

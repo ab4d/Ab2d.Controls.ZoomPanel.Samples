@@ -1,0 +1,53 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ViewboxEx.ViewboxExSamples"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Title="ViewboxExSamples">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="LightBlue"/>
+        <Rectangle Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="LightBlue"/>
+        <Rectangle Grid.Row="1" Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="LightBlue"/>
+        <Rectangle Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="LightBlue"/>
+        <Rectangle Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="LightBlue"/>
+        <Rectangle Grid.Row="3" Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="LightBlue"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="18" VerticalAlignment="Bottom">Viewbox="0 0 1 1"</TextBlock>
+        <ab2d:ViewboxEx Grid.Row="1" Grid.Column="0" Viewbox="0 0 1 1" Stretch="Fill">
+            <TextBlock>12345</TextBlock>
+        </ab2d:ViewboxEx>
+        <TextBlock Grid.Row="0" Grid.Column="2" FontSize="18" VerticalAlignment="Bottom">Viewbox="0 0 0.5 1"</TextBlock>
+        <ab2d:ViewboxEx Grid.Row="1" Grid.Column="2" Viewbox="0 0 0.5 1" Stretch="Fill">
+            <TextBlock>12345</TextBlock>
+        </ab2d:ViewboxEx>
+        <TextBlock Grid.Row="0" Grid.Column="4" FontSize="18" VerticalAlignment="Bottom">Viewbox="0.5 0.5 0.5 0.5"</TextBlock>
+        <ab2d:ViewboxEx Grid.Row="1" Grid.Column="4" Viewbox="0.5 0.5 0.5 0.5" Stretch="Fill">
+            <TextBlock>12345</TextBlock>
+        </ab2d:ViewboxEx>
+        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="18" VerticalAlignment="Bottom">Viewbox="0 0 2 1"</TextBlock>
+        <ab2d:ViewboxEx Grid.Row="3" Grid.Column="0" Viewbox="0 0 2 1" Stretch="Fill">
+            <TextBlock>12345</TextBlock>
+        </ab2d:ViewboxEx>
+        <TextBlock Grid.Row="2" Grid.Column="2" FontSize="18" VerticalAlignment="Bottom">Viewbox="-1 -1 3 3"</TextBlock>
+        <ab2d:ViewboxEx Grid.Row="3" Grid.Column="2" Viewbox="-1 -1 3 3" Stretch="Fill">
+            <TextBlock>12345</TextBlock>
+        </ab2d:ViewboxEx>
+        <TextBlock Grid.Row="2" Grid.Column="4" FontSize="18" VerticalAlignment="Bottom">Viewbox="-2 0 5 1"</TextBlock>
+        <ab2d:ViewboxEx Grid.Row="3" Grid.Column="4" Viewbox="-2 0 5 1" Stretch="Fill">
+            <TextBlock>12345</TextBlock>
+        </ab2d:ViewboxEx>
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" FontSize="14" VerticalAlignment="Bottom">Note: Stretch property on ViewboxEx is set to "Fill".</TextBlock>
+    </Grid>
+</Page>

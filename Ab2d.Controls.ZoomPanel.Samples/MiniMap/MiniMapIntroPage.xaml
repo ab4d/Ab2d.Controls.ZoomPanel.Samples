@@ -1,0 +1,53 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.MiniMap.MiniMapIntroPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:common="clr-namespace:Ab3d.PowerToys.Samples.Common"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+	Title="MiniMapIntroPage">
+    <Page.Background>
+        <LinearGradientBrush  StartPoint="0,1" EndPoint="0,0">
+            <GradientStop Color="#FCCC" Offset="0"/>
+            <GradientStop Color="#FFFFFFFF" Offset=".5"/>
+        </LinearGradientBrush>
+    </Page.Background>
+    <Grid ClipToBounds="True">
+        <Image Width="400" VerticalAlignment="Bottom" HorizontalAlignment="Right" Opacity="0.5" Source="{StaticResource ZoomPanelImage}">
+            <Image.RenderTransform>
+                <TranslateTransform X="30" Y="160"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Opacity)" From="0.0" To="0.5" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="20 16 20 10">
+                <!-- NOTE: In the previous versions of the samples FlowDocumentReader was used to show info pages. But because this control always thrown an exception that 'PresentationUI.Aero2' was not found (the exception was handled by .Net code, but it always stopped the debugger if stop on exception was turned on), I have upgraded TextBlock to add some additional markup. -->
+                <common:TextBlockEx Style="{StaticResource InfoTitle}" Foreground="Black">\!ZoomPanelMiniMap\!</common:TextBlockEx>
+                <common:TextBlockEx Style="{StaticResource InfoContent}" Foreground="Black">
+                    ZoomPanelMiniMap control shows the whole content of the ZoomPanel in a smaller area. The rectangles on the MiniMap show the area that is currently shown by the ZoomPanel.\n
+                    \n
+                    The ZoomPanelMiniMap can be also used to change the area that is shown by the ZoomPanel. 
+                    It is possible to move the rectangle shown in the ZoomPanelMiniMap around with the mouse.
+                    It is also possible to zoom in and out with mouse wheel while mouse is over the ZoomPanelMiniMap.\n
+                    \n
+                    The ZoomPanel library contains three classes for MiniMap. The base class is \!BaseMiniMap\! that contains properties that define appearance of the MiniMap.
+                    \!ViewboxExMiniMap\! and \!ZoomPanelMiniMap\! controls are derived from BaseMiniMap control and are specialized to be used with ViewboxEx and ZoomPanel.\n
+                    \n
+                    \n
+                    The common use of ZoomPanelMiniMap is shown in "Painter sample" and "Basic ZoomPanel sample".\n
+                    \n
+                    The ZoomPanelMiniMap sample under this section show how to control the ZoomPanel with only ZoomPanelMiniMap. The BaseMiniMap sample shows how to change the appearance of the MiniMap and also demonstrates how different objects can be used for MapImageElement. BaseMiniMap is a base control for ZoomPanelMiniMap and ViewboxExMiniMap so all its properties also apply for derived controls.
+                </common:TextBlockEx>
+            </StackPanel>
+        </ScrollViewer>        
+    </Grid>
+</Page>    

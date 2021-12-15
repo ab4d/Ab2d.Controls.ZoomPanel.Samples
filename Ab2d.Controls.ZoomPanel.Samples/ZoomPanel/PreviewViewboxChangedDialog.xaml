@@ -1,0 +1,41 @@
+﻿<Window x:Class="Ab2d.ZoomControlSample.ZoomPanel.PreviewViewboxChangedDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Preview Viewbox Changed Dialog"
+    Loaded="Window_Loaded"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen">
+    <StackPanel Orientation="Vertical" Margin="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        
+            <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="5">Old viewbox value:</TextBlock>
+            <TextBox Name="OldViewboxTextBox" Grid.Column="1" Grid.Row="0" Background="#DDDDDD" Width="150" Margin="5" IsReadOnly="True"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Margin="5">New viewbox value:</TextBlock>
+            <TextBox Name="NewViewboxTextBox" Grid.Column="1" Grid.Row="1" Width="150" Margin="5"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Margin="5 10 5 5">Old RotationAngle:</TextBlock>
+            <TextBox Name="OldRotationAngleTextBox" Grid.Column="1" Grid.Row="2" Background="#DDDDDD" Width="150" Margin="5 10 5 5" IsReadOnly="True"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Margin="5">New RotationAngle:</TextBlock>
+            <TextBox Name="NewRotationAngleTextBox" Grid.Column="1" Grid.Row="3" Width="150" Margin="5"/>
+        </Grid>
+
+        <TextBlock TextWrapping="Wrap" Width="280" Margin="0 10 0 0" Text="To change the values in the PreviewViewboxChanged, set new values for the &quot;New viewbox value&quot; or &quot;New RotationAngle&quot;."/>
+        
+        <StackPanel Orientation="Horizontal" Margin="0 10 0 0" HorizontalAlignment="Right">
+            <Button Name="DenyChangeButton" Margin="0 5 5 0" Width="80" Click="DenyChangeButton_Click">Deny change</Button>
+            <Button Name="AllowChangeButton" Margin="0 5 0 0" Width="80" IsDefault="True" Click="AllowChangeButton_Click">Allow change</Button>
+        </StackPanel>
+    </StackPanel>        
+</Window>

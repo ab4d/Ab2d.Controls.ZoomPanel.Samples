@@ -1,0 +1,67 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.ZoomPanelMethodsSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Title="ZoomPanelMethodsSample">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="2" BorderBrush="Black" BorderThickness="2" CornerRadius="5" Margin="5" Padding="5">
+            <Grid>
+                <ab2d:ZoomPanel Name="ZoomPanel1" Background="White" IsAnimated="True" 
+                                IsPanningAnimated="False" IsMouseWheelZoomEnabled="False" AnimationDuration="0:0:0.2"
+                                Viewbox="0.1 0.1 0.8 0.8"
+                                ViewboxLimits="-0.1 -0.1 1.2 1.2" IsViewboxLimited="True">
+                    <Frame Background="White" Source="/Resources/tiger.xaml" />
+                </ab2d:ZoomPanel>
+                <TextBlock Name="InfoTextBlock" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Background="#99FFFFFF" Text="Viewbox: 0 0 1 1"></TextBlock>
+            </Grid>
+        </Border>
+        <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Top">
+            <TextBlock FontWeight="Bold">ZoomPanel methods:</TextBlock>
+            <Button Name="ZoomToFactorButton" HorizontalAlignment="Left" Click="ZoomToFactorButton_Click">ZoomToFactor(1.5)</Button>
+            <Button Name="ZoomForFactorButton" HorizontalAlignment="Left" Click="ZoomForFactorButton_Click">ZoomForFactor(1.5)</Button>
+            <Button Name="SetViewboxButton" HorizontalAlignment="Left" Click="SetViewboxButton_Click">SetViewbox(rect)</Button>
+            <Button Name="SetViewboxNowButton" HorizontalAlignment="Left" Click="SetViewboxNowButton_Click">SetViewboxNew(rect)</Button>
+            <Button Name="ZoomForRectangleButton" HorizontalAlignment="Left" Click="ZoomForRectangleButton_Click">ZoomForRectangle(rect)</Button>
+            <Button Name="ZoomForRectangle2Button" HorizontalAlignment="Left" Click="ZoomForRectangle2Button_Click">ZoomForRectangle(point1, point2)</Button>
+            <Button Name="ZoomForRectangleRelativeButton" HorizontalAlignment="Left" Click="ZoomForRectangleRelativeButton_Click">ZoomForRectangleRelative(rect)</Button>
+            <Button Name="TranslateButton" HorizontalAlignment="Left" Click="TranslateButton_Click">Translate(50, 20)</Button>
+            <Button Name="TranslateRelativeButton" HorizontalAlignment="Left" Click="TranslateRelativeButton_Click">TranslateRelative(-0.2, -0.1)</Button>
+            <Button Name="TranslateToCenterButton" HorizontalAlignment="Left" Click="TranslateToCenterButton_Click">TranslateToCenter(mousePoint)</Button>
+            <Button Name="TranslateToCenterRelativeButton" HorizontalAlignment="Left" Click="TranslateToCenterRelativeButton_Click">TranslateToCenterRelative(relativePoint)</Button>
+            <Button Name="ZoomAndTranslateToCenterButton" HorizontalAlignment="Left" Click="ZoomAndTranslateToCenterButton_Click">ZoomAndTranslateToCenter(...)</Button>
+            <Button Name="ZoomAndTranslateToCenterRelativeButton" HorizontalAlignment="Left" Click="ZoomAndTranslateToCenterRelativeButton_Click">ZoomAndTranslateToCenterRelative(...)</Button>
+            <Button Name="ZoomAtMousePositionButton" HorizontalAlignment="Left" Click="ZoomAtMousePositionButton_Click">ZoomAtMousePosition(...)</Button>
+            <Button Name="ZoomAtRelativeMousePositionButton" HorizontalAlignment="Left" Click="ZoomAtRelativeMousePositionButton_Click">ZoomAtRelativeMousePosition(...)</Button>
+            <Button Name="ResetButton" HorizontalAlignment="Left" Click="ResetButton_Click">Reset()</Button>
+            <Button Name="ResetNowButton" HorizontalAlignment="Left" Click="ResetNowButton_Click">ResetNow()</Button>
+            <Button Name="ResetToLimitsButton" HorizontalAlignment="Left" Click="ResetToLimitsButton_Click">ResetToLimits()</Button>
+            <Button Name="ResetToLimitsNowButton" HorizontalAlignment="Left" Click="ResetToLimitsNowButton_Click">ResetToLimitsNow()</Button>
+            <Button Name="FitToWidthButton" HorizontalAlignment="Left" Click="FitToWidthButton_Click">FitToWidth()</Button>
+            <Button Name="FitToHeightButton" HorizontalAlignment="Left" Click="FitToHeightButton_Click">FitToHeight()</Button>
+            <Button Name="FitToLimitsWidthButton" HorizontalAlignment="Left" Click="FitToLimitsWidthButton_Click">FitToLimitsWidth()</Button>
+            <Button Name="FitToLimitsHeightButton" HorizontalAlignment="Left" Click="FitToLimitsHeightButton_Click">FitToLimitsHeight()</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" Margin="5 0">
+            <TextBlock FontWeight="Bold">ZoomPanel (IScrollInfo) methods:</TextBlock>
+            <Button Name="MouseWheelDownButton" HorizontalAlignment="Left" Click="MouseWheelDownButton_Click">MouseWheelDown()</Button>
+            <Button Name="MouseWheelLeftButton" HorizontalAlignment="Left" Click="MouseWheelLeftButton_Click">MouseWheelLeft()</Button>
+            <Button Name="MouseWheelRightButton" HorizontalAlignment="Left" Click="MouseWheelRightButton_Click">MouseWheelRight()</Button>
+            <Button Name="MouseWheelUpButton" HorizontalAlignment="Left" Click="MouseWheelUpButton_Click">MouseWheelUp()</Button>
+            <Button Name="LineDownButton" HorizontalAlignment="Left" Click="LineDownButton_Click">LineDown()</Button>
+            <Button Name="LineLeftButton" HorizontalAlignment="Left" Click="LineLeftButton_Click">LineLeft()</Button>
+            <Button Name="LineRightButton" HorizontalAlignment="Left" Click="LineRightButton_Click">LineRight()</Button>
+            <Button Name="LineUpButton" HorizontalAlignment="Left" Click="LineUpButton_Click">LineUp()</Button>
+            <Button Name="PageDownButton" HorizontalAlignment="Left" Click="PageDownButton_Click" >PageDown()</Button>
+            <Button Name="PageLeftButton" HorizontalAlignment="Left" Click="PageLeftButton_Click">PageLeft()</Button>
+            <Button Name="PageRightButton" HorizontalAlignment="Left" Click="PageRightButton_Click">PageRight()</Button>
+            <Button Name="PageUpButton" HorizontalAlignment="Left" Click="PageUpButton_Click">PageUp()</Button>
+            <Button Name="SetHorizontalOffsetButton" HorizontalAlignment="Left" Click="SetHorizontalOffsetButton_Click">SetHorizontalOffset(double)</Button>
+            <Button Name="SetVerticalOffsetButton" HorizontalAlignment="Left" Click="SetVerticalOffsetButton_Click">SetVerticalOffset(double)</Button>
+        </StackPanel>
+    </Grid>
+</Page>

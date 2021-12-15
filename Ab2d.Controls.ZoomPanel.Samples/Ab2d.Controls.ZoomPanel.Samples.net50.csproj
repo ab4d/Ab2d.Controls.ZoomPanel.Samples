@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net50-windows7</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Ab2d.Controls.ZoomPanel.Samples</AssemblyName>
+    <RootNamespace>Ab2d.ZoomControlSample</RootNamespace>
+    <ApplicationIcon>ZoomPanel.ico</ApplicationIcon>
+    <Version>6.0.8017</Version>
+    <AssemblyVersion>6.0.8017.2050</AssemblyVersion>
+    <FileVersion>6.0.8017.2050</FileVersion>    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ab2d.Controls.ZoomPanel" Version="6.0.8019" />    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\ab4d-logo.png" />
+    <None Remove="Resources\Document1.tif" />
+    <None Remove="Resources\Document2.tif" />
+    <None Remove="Resources\Document3.tif" />
+    <None Remove="Resources\earthatnight-2048.jpg" />
+    <None Remove="Samples.xml" />
+    <None Remove="UseCases\Documents.xml" />
+    <None Remove="ZoomPanel.ico" />
+    <None Remove="ZoomPanel.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Document1.tif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Document2.tif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Document3.tif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\ab4d-logo.png" />
+    <Resource Include="Resources\earthatnight-2048.jpg" />
+    <Resource Include="Samples.xml" />
+    <Resource Include="UseCases\Documents.xml" />
+    <Resource Include="ZoomPanel.ico" />
+    <Resource Include="ZoomPanel.png" />
+  </ItemGroup>
+
+</Project>

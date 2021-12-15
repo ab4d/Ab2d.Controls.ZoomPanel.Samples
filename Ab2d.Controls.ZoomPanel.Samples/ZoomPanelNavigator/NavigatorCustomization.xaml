@@ -1,0 +1,133 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanelNavigator.NavigatorCustomization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="600"
+	Title="NavigatorCustomization">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ab2d:ZoomPanelNavigator Name="ZoomPanelNavigator1" Height="200" Grid.Column="0" MinZoomFactor="1" MaxZoomFactor="5">
+            <ab2d:ZoomPanelNavigator.LayoutTransform>
+                <ScaleTransform x:Name="NavigatorScale" ScaleX="2" ScaleY="2"/>
+            </ab2d:ZoomPanelNavigator.LayoutTransform>
+        </ab2d:ZoomPanelNavigator>
+
+        <Border  Grid.Column="1" Background="#FFEEEEEE">
+            <StackPanel Orientation="Vertical" Margin="10 5">
+                <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">Orientation:</TextBlock>
+                <RadioButton Name="VerticalRadioButton" IsChecked="True" GroupName="OrientationGroup" Checked="OrientationRadioButton_Checked">Vertical</RadioButton>
+                <RadioButton Name="HorizontalRadioButton" Margin="0 2 0 0" GroupName="OrientationGroup" Checked="OrientationRadioButton_Checked">Horizontal</RadioButton>
+                
+                <TextBlock Margin="0 10 0 0" FontSize="12" FontWeight="Bold">Size and scale:</TextBlock>
+                
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="0 0 5 0" Width="90" Text="Navigator scale:"/>
+                    <ComboBox Name="ScaleComboBox" Width="60"
+                      SelectedIndex="1" SelectionChanged="ScaleComboBox_SelectionChanged">
+                        <ComboBoxItem>100%</ComboBoxItem>
+                        <ComboBoxItem>200%</ComboBoxItem>
+                        <ComboBoxItem>300%</ComboBoxItem>
+                        <ComboBoxItem>400%</ComboBoxItem>
+                        <ComboBoxItem>500%</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 3 0 0">
+                    <TextBlock Name="HeightTextBlock" VerticalAlignment="Center" Margin="0 0 5 0" Width="90" Text="Navigator height:"/>
+                    <ComboBox Name="HeightComboBox" Width="60" SelectedIndex="2" SelectionChanged="HeightComboBox_SelectionChanged">
+                        <ComboBoxItem>NaN (not set)</ComboBoxItem>
+                        <ComboBoxItem>150</ComboBoxItem>
+                        <ComboBoxItem>200</ComboBoxItem>
+                        <ComboBoxItem>250</ComboBoxItem>
+                        <ComboBoxItem>300</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <TextBlock VerticalAlignment="Center" Margin="0 0 5 0" Text="(default size is 50 x 200)"/>
+
+                <TextBlock Margin="0 15 0 0" FontSize="12" FontWeight="Bold">Colors:</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0" >
+                    <TextBlock VerticalAlignment="Center" Margin="0 0 5 0" Width="110" Text="SelectedFillColor:"/>
+                    <ComboBox Name="SelectedFillColorComboBox" Width="60" SelectedIndex="1">
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="Orange"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="Blue"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="Red"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="White"/>
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 3 0 0" >
+                    <TextBlock VerticalAlignment="Center" Margin="0 0 5 0" Width="110" Text="SelectedContentColor:"/>
+                    <ComboBox Name="SelectedContentColorComboBox" Width="60" SelectedIndex="0">
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="Black"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="Blue"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="Red"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="White"/>
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0" >
+                    <TextBlock VerticalAlignment="Center" Margin="0 0 5 0" Width="110" Text="LightColor:"/>
+                    <ComboBox Name="LightColorComboBox" Width="60" SelectedIndex="1">
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="White"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="LightBlue"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="LightGoldenrodYellow"/>
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 3 0 0" >
+                    <TextBlock VerticalAlignment="Center" Margin="0 0 5 0" Width="110" Text="DarkColor:"/>
+                    <ComboBox Name="DarkColorComboBox" Width="60" SelectedIndex="1">
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="Black"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="DarkBlue"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <Rectangle Width="35" Height="15" Stroke="Black" StrokeThickness="1" Fill="DarkGoldenrod"/>
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+                <Button Name="SetSelectedsColorButton" Margin="0 10 0 0" Width="120" HorizontalAlignment="Left" Click="SetSelectedColorsButton_Click">SetSelectedColor</Button>
+                <Button Name="SetAllColorsButton" Margin="0 3 0 0" Width="120" HorizontalAlignment="Left" Click="SetAllColorsButton_Click">SetMainColors</Button>
+                <Button Name="ResetColorsButton" Margin="0 3 0 0" Width="120" HorizontalAlignment="Left" Click="ResetColorsButton_Click">Reset defaults</Button>
+                <Button Name="CurrentColorsButton" Margin="0 3 0 0" Width="120" HorizontalAlignment="Left" Click="CurrentColorsButton_Click">Get current colors</Button>
+                
+                <Button Name="CustomDictButton" Margin="0 15 0 0" Width="180" HorizontalAlignment="Left" Click="CustomDictButton_Click">Load custom resource dictionary</Button>
+
+                <TextBlock Margin="0 10 0 0" Text="See description below for more info."/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

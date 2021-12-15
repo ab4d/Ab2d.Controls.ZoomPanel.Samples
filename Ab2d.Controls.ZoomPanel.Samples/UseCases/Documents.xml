@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Documents>
+  <Document Title="Customer Service Report" FileName="/Resources/Document1.tif" Description="Sample Customer Service Report" Created="10th July 2009" Author="Mr. Unknown"/>
+  <Document Title="Travel Expenses" FileName="/Resources/Document2.tif" Description="Sample Travel Expenses" Created="15th July 2009" Author="Mr. Unknown"/>
+  <Document Title="Invoice" FileName="/Resources/Document3.tif" Description="Sample Invoice" Created="17th July 2009" Author="Mr. Unknown"/>
+</Documents>

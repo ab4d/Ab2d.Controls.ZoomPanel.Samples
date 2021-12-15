@@ -1,0 +1,34 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.ZoomPanelEventsSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Title="ZoomPanelEventsSample">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <ab2d:ZoomPanel Name="ZoomPanel1" Grid.Row="0" 
+                        ZoomModeChanged="ZoomPanel1_ZoomModeChanged" 
+                        PreviewViewboxChanged="ZoomPanel1_PreviewViewboxChanged"
+                        ViewboxChanged="ZoomPanel1_ViewboxChanged">
+            <Frame Name="ZoomPanelContentFrame" Source="/Resources/conferenze_2d_5.xaml" NavigationUIVisibility="Hidden"/>
+        </ab2d:ZoomPanel>
+        <Border Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="Black" BorderThickness="1" Background="#AAFFFFFF">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <ab2d:ZoomController Name="TestZoomController3" HorizontalAlignment="Right"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Name="RotateRightButton" Width="70" Content="Rotate left" Click="RotateRightButton_Click"/>
+                    <Button Name="RotateLeftButton" Width="70" Margin="5 0" Content="Rotate right" Click="RotateLeftButton_Click"/>
+                </StackPanel>
+
+                <CheckBox Name="HandlePreviewCheckBox" Margin="0 10 0 0" IsChecked="True" HorizontalAlignment="Right">Handle PreviewViewboxChanged</CheckBox>
+            </StackPanel>
+        </Border>
+        
+        <ScrollViewer Name="InfoScrollViewer"  Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <TextBox Name="InfoTextBox" AcceptsReturn="True"/>
+        </ScrollViewer>
+        <GridSplitter Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="3"/>
+    </Grid>
+</Page>

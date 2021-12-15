@@ -1,0 +1,163 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.ZoomPanelIntroPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:common="clr-namespace:Ab3d.PowerToys.Samples.Common"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+    Title="ZoomPanelIntroPage">
+  <Page.Background>
+    <LinearGradientBrush  StartPoint="0,1" EndPoint="0,0">
+      <GradientStop Color="#FCCC" Offset="0"/>
+      <GradientStop Color="#FFFFFFFF" Offset=".5"/>
+    </LinearGradientBrush>
+  </Page.Background>
+    <Grid ClipToBounds="True">
+        <Image Width="400" VerticalAlignment="Bottom" HorizontalAlignment="Right" Opacity="0.5" Source="{StaticResource ZoomPanelImage}">
+            <Image.RenderTransform>
+                <TranslateTransform X="30" Y="160"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Opacity)" From="0.0" To="0.5" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="20 16 20 10">
+                <!-- NOTE: In the previous versions of the samples FlowDocumentReader was used to show info pages. But because this control always thrown an exception that 'PresentationUI.Aero2' was not found (the exception was handled by .Net code, but it always stopped the debugger if stop on exception was turned on), I have upgraded TextBlock to add some additional markup. -->
+                <common:TextBlockEx Style="{StaticResource InfoTitle}" Foreground="Black">\!ZoomPanel\!</common:TextBlockEx>
+                <common:TextBlockEx Style="{StaticResource InfoContent}" Foreground="Black">
+                    The ZoomPanel control is the main control in the library.\n
+                    \n
+                    It shows its content based on the Viewbox property and enables user to zoom and pan the content with the mouse.
+                    The zooming and panning action that is done is defined by the ZoomMode property.\n
+                    \n
+                    The ZoomPanel samples show how to customize the zooming behavior with many properties and methods.
+                The first few samples show how to use the basic properties and methods of the ZoomPanel. 
+                The following three samples show how to control the shown area with Viewbox or ZoomFactor and CenterPosition properties.
+                The last samples show some other possible uses of ZoomPanel.\n
+                    \n
+                    The \!Basic\! sample enables user to change the basic properties of ZoomPanel. It is also possible to explore the ZoomPanel on a few different contents.\n
+                    \n
+                    The \!ScrollViewer\! sample shows how simple is to add Scrollbars to the ZoomPanel - simply add the ZoomPanel into ScrollViewer control.\n
+                    \n
+                    The \!ZoomPanel Stretch\! demonstrates the usage of ZoomPanel Stretch property. By default the content of ZoomPanel is uniformly stretched to the whole ZoomPanel. With Stretch property it is possible to change this.\n
+                    \n
+                    The \!History\! sample shows how to navigate back and forward in the saved history items\n
+                    \n
+                    The \!Custom Content\! sample shows how to use ZoomPanel in a dynamic content scenario where the shown content is based on the zoom level.\n
+                    \n
+                    The next three samples show how to control the shown area with Viewbox or ZoomFactor and CenterPosition properties.\n
+                    \n
+                    The \!Viewbox\! sample demonstrates the use or Viewbox property. The property is a Rect that defines the relative area that is shown. The X and Y of the Rect define the start position of the shown area. The Width and Height of the Rect define the size of the shown area.\n
+                    \n
+                    The \!ZoomFactor\! sample is demonstrating how different ZoomFactor values show different sizes of content.\n
+                    \n
+                    The \!CenterPosition\! sample demonstrate how to use CenterPosition and CenterPositionUnits properties to set which point of the content will be positioned in the center of the ZoomPanel.\n
+                    \n
+                    The \!Multi mouse buttons\! sample shows how to assign rectangular zoom mode to left mouse button and pan to right mouse button.\n
+                    \n
+                    The \!SetZoom method\! sample shows the most common usage of ZoomPanel from code. The main methods that can be used to control ZoomPanel are SetZoom and SetZoomNow.\n
+                    \n
+                    The \!Other methods\! sample demonstrates the use of other public methods on the ZoomPanel.\n
+                    \n
+                    The \!Events\! sample demonstrates the use of ZoomPanel events - how simply is to control and change every zooming and panning action made by ZoomPanel.\n
+                    \n
+                    The \!ZoomPanelDump\! sample shows how to use the ZoomPanelDump control. It can be used to preview the Viewbox and other ZoomPanel property values.\n
+                </common:TextBlockEx>
+            </StackPanel>
+        </ScrollViewer>
+        <!--<FlowDocumentReader ViewingMode="Scroll" IsFindEnabled="false" IsPageViewEnabled="false" IsTwoPageViewEnabled="false">
+            <FlowDocument>
+                <Paragraph FontWeight="Bold" FontSize="24">ZoomPanel</Paragraph>
+                <Paragraph>The ZoomPanel control is the main control in the library.</Paragraph>
+                <Paragraph>It shows its content based on the Viewbox property and enables user to zoom and pan the content with the mouse.
+                    The zooming and panning action that is done is defined by the ZoomMode property.</Paragraph>
+                <Paragraph>The ZoomPanel samples show how to customize the zooming behavior with many properties and methods.
+                The first few samples show how to use the basic properties and methods of the ZoomPanel. 
+                The following three samples show how to control the shown area with Viewbox or ZoomFactor and CenterPosition properties.
+                The last samples show some other possible uses of ZoomPanel.</Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">Basic</Run>
+                    <Run>sample enables user to change the basic properties of ZoomPanel. It is also possible to explore the ZoomPanel on a few different contents.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">ScrollViewer</Run>
+                    <Run>sample shows how simple is to add Scrollbars to the ZoomPanel - simply add the ZoomPanel into ScrollViewer control.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">ViewboxLimits</Run>
+                    <Run>sample demonstrates how the area to zoom can be limited with ViewboxLimits and ViewboxMinSize properties.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">ZoomPanel Stretch</Run>
+                    <Run>demonstrates the usage of ZoomPanel Stretch property. By default the content of ZoomPanel is uniformly stretched to the whole ZoomPanel. With Stretch property it is possible to change this.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">History</Run>
+                    <Run>sample shows how to navigate back and forward in the saved history items</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">Custom Content</Run>
+                    <Run>sample shows how to use ZoomPanel in a dynamic content scenario where the shown content is based on the zoom level.</Run>
+                </Paragraph>
+                
+                <Paragraph>The next three samples show how to control the shown area with Viewbox or ZoomFactor and CenterPosition properties.</Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">Viewbox</Run>
+                    <Run>sample demonstrates the use or Viewbox property. The property is a Rect that defines the relative area that is shown. The X and Y of the Rect define the start position of the shown area. The Width and Height of the Rect define the size of the shown area.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">ZoomFactor</Run>
+                    <Run>sample is demonstrating how different ZoomFactor values show different sizes of content.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">CenterPosition</Run>
+                    <Run>sample demonstrate how to use CenterPosition and CenterPositionUnits properties to set which point of the content will be positioned in the center of the ZoomPanel.</Run>
+                </Paragraph>
+
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">Multi mouse buttons</Run>
+                    <Run>sample shows how to assign rectangular zoom mode to left mouse button and pan to right mouse button.</Run>
+                </Paragraph>                
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">SetZoom method</Run>
+                    <Run>sample shows the most common usage of ZoomPanel from code. The main methods that can be used to control ZoomPanel are SetZoom and SetZoomNow.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">Other methods</Run>
+                    <Run>sample demonstrates the use of other public methods on the ZoomPanel.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">Events</Run>
+                    <Run>sample demonstrates the use of ZoomPanel events - how simply is to control and change every zooming and panning action made by ZoomPanel.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Run>The</Run>
+                    <Run FontWeight="Bold">ZoomPanelDump</Run>
+                    <Run>sample shows how to use the ZoomPanelDump control. It can be used to preview the Viewbox and other ZoomPanel property values.</Run>
+                </Paragraph>                
+            </FlowDocument>
+        </FlowDocumentReader>-->
+    </Grid>
+</Page>

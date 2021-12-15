@@ -1,0 +1,68 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ViewboxEx.ViewboxExTester"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Loaded="Page_Loaded" Title="ViewboxExTester">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" Margin="10 10 5 10" Orientation="Vertical">
+            <TextBlock Margin="2 0 0 3" FontSize="12" FontWeight="Bold">Viewbox:</TextBlock>
+            <TextBox Name="ViewboxTextBox" FontSize="14" TextChanged="ViewboxTextBox_TextChanged" Height="23.331" Width="160">0 0 1 1</TextBox>
+            <CheckBox FontSize="12" IsChecked="True" Name="RelativeViewboxUnitsCheckBox" Checked="RelativeViewboxUnitsCheckBox_Checked" Unchecked="RelativeViewboxUnitsCheckBox_Checked">Relative Viewbox Units</CheckBox>
+            <Label></Label>
+            <TextBlock Margin="2 0 0 3" FontSize="12" FontWeight="Bold">RotationAngle:</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Slider Name="RotationAngleSlider" Minimum="-180" Maximum="180" Value="0" Width="120" TickPlacement="BottomRight" TickFrequency="90"/>    
+                <!-- NOTE: StringFormat is only available in .Net 3.5 SP1 and higher - delete it if the code does not compile -->
+                <TextBlock Text="{Binding ElementName=RotationAngleSlider,Path=Value, StringFormat=F1}" Width="40"/>
+            </StackPanel>
+            
+            <Label></Label>
+            <TextBlock Margin="2 0 0 3" FontSize="12" FontWeight="Bold">Content (TextBlock):</TextBlock>
+            <TextBox Name="ContentTextBox" FontSize="14" TextChanged="ContentTextBox_TextChanged" Height="23.331" Width="160">1234567890</TextBox>
+            <Label></Label>
+            <TextBlock Margin="2 0 0 3" FontSize="12" FontWeight="Bold">Stretch:</TextBlock>
+            <ComboBox FontSize="14" SelectionChanged="StretchComboBox_SelectionChanged" Height="23.331" Name="StretchComboBox" Width="160" SelectedIndex="2">
+                <ComboBoxItem>None</ComboBoxItem>
+                <ComboBoxItem>Fill</ComboBoxItem>
+                <ComboBoxItem>Uniform</ComboBoxItem>
+                <ComboBoxItem>UniformToFill</ComboBoxItem>
+            </ComboBox>
+            <Label></Label>
+            <TextBlock Margin="2 0 0 3" FontSize="12" FontWeight="Bold">Viewbox preview:</TextBlock>
+            <!--<Canvas Name="RectanglesCanvas" Width="160" Height="100" ClipToBounds="True">
+                <Rectangle Width="160" Height="100" Stroke="LightGray" StrokeThickness="1"/>
+                <Rectangle Name="ViewboxRectangle" Canvas.Left="60" Canvas.Top="35" Width="40" Height="30" Fill="Azure" Stroke="Gray" StrokeThickness="2"/>
+                <Rectangle Name="ContentRectangle" Canvas.Left="30" Canvas.Top="50" Width="40" Height="40" Stroke="Blue"/>
+            </Canvas>-->
+            <!--<ab2d:BaseMiniMap Name="MiniMap1" Width="160" Height="100" BorderBrush="Black" BorderThickness="1"/>-->
+            <ab2d:ViewboxExMiniMap Name="MiniMap1" ViewboxEx="{Binding ElementName=Viewbox1}" Width="152" Height="152" BorderBrush="Black" BorderThickness="1"/>
+            <Label></Label>
+            <TextBlock FontSize="12" FontWeight="Bold">ContentSize:</TextBlock>
+            <TextBlock FontSize="12" Name="ContentSizeLabel">w:0.00 h:0.00</TextBlock>
+            <Label></Label>
+            <TextBlock FontSize="12" FontWeight="Bold">ActualContentBounds:</TextBlock>
+            <TextBlock FontSize="12" Name="ActualContentBoundsXYLabel">x:0.00 y:0.00</TextBlock>
+            <TextBlock FontSize="12" Name="ActualContentBoundsWHLabel">w:0.00 h:0.00</TextBlock>
+            <Label></Label>
+            <TextBlock FontSize="12" FontWeight="Bold">ActualViewbox:</TextBlock>
+            <TextBlock FontSize="12" Name="ActualViewboxXYLabel">x:0.00 y:0.00</TextBlock>
+            <TextBlock FontSize="12" Name="ActualViewboxWHLabel">w:0.00 h:0.00</TextBlock>
+        </StackPanel>
+
+        <Border Grid.Column="1" Margin="5 10 10 10" BorderBrush="Gray" BorderThickness="2">
+            <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ab2d:ViewboxEx Name="Viewbox1"
+                        RotationAngle="{Binding ElementName=RotationAngleSlider, Path=Value}"
+                        Viewbox="0 0 1 1" ViewboxUnits="RelativeToBoundingBox" Stretch="Uniform">
+                    <TextBlock Name="ContentTextBlock" Background="LightGray">1234567890</TextBlock>
+                </ab2d:ViewboxEx>
+            </ScrollViewer>
+        </Border>
+
+    </Grid>
+</Page>

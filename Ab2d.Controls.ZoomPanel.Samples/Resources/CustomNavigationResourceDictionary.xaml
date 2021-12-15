@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Original Values:
+    
+    <Color x:Key="SelectedColor">Orange</Color>
+    <Color x:Key="SelectedContentColor">Black</Color>
+    <Color x:Key="LightSelectedColor">#FFE59400</Color>
+    <Color x:Key="DarkSelectedColor">#FFFDD387</Color>
+    
+    <Color x:Key="Color_000">#000</Color>
+    <Color x:Key="Color_222">#222</Color>
+    <Color x:Key="Color_333">#333</Color>
+    <Color x:Key="Color_555">#555</Color>
+    <Color x:Key="Color_888">#888</Color>
+    <Color x:Key="Color_BBB">#BBB</Color>
+    <Color x:Key="Color_FFF">#FFF</Color>
+    -->
+    
+    <Color x:Key="SelectedColor">Blue</Color>
+    <Color x:Key="SelectedContentColor">Black</Color>
+    <Color x:Key="LightSelectedColor">#FF8888FF</Color>
+    <Color x:Key="DarkSelectedColor">#FF2222BB</Color>
+
+    <Color x:Key="Color_000">#000</Color>
+    <Color x:Key="Color_222">DarkBlue</Color>
+    <Color x:Key="Color_333">#333</Color>
+    <Color x:Key="Color_555">#555</Color>
+    <Color x:Key="Color_888">#888</Color>
+    <Color x:Key="Color_BBB">#BBB</Color>
+    <Color x:Key="Color_FFF">#FFF</Color>
+
+    <LinearGradientBrush x:Key="InnerCircleBrush" StartPoint="0.6 0" EndPoint="0.4 1">
+        <GradientStop Offset="1" Color="{DynamicResource Color_BBB}"/>
+        <GradientStop Offset="0" Color="{DynamicResource Color_FFF}"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SelectedInnerCircleBrush" StartPoint="0.6 0" EndPoint="0.4 1">
+        <GradientStop Offset="1" Color="{DynamicResource LightSelectedColor}"/>
+        <GradientStop Offset="0" Color="{DynamicResource DarkSelectedColor}"/>
+    </LinearGradientBrush>
+
+    <RadialGradientBrush x:Key="LargeOuterCircleBrush" Center="0.5 0.5" GradientOrigin="0.5 0.5" MappingMode="RelativeToBoundingBox" RadiusX="0.7" RadiusY="0.7">
+        <GradientStop Offset="0.6" Color="#00FFFFFF"/>
+        <GradientStop Offset="0.7" Color="{DynamicResource Color_222}"/>
+        <GradientStop Offset="1" Color="{DynamicResource Color_222}"/>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="OuterCircleBrush" Center="0.5 0.5" GradientOrigin="0.5 0.5" MappingMode="RelativeToBoundingBox" RadiusX="0.7" RadiusY="0.7">
+        <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+        <GradientStop Offset="0.7" Color="{DynamicResource Color_222}"/>
+        <GradientStop Offset="1" Color="{DynamicResource Color_222}"/>
+    </RadialGradientBrush>
+
+    <SolidColorBrush x:Key="DisabledContentBrush" Color="{DynamicResource Color_888}"/>
+    <SolidColorBrush x:Key="NormalContentBrush" Color="{DynamicResource Color_222}"/>
+    <SolidColorBrush x:Key="SelectedContentBrush" Color="{DynamicResource SelectedContentColor}"/>
+
+    <SolidColorBrush x:Key="NavigationButtonStroke" Color="{DynamicResource Color_555}"/>
+    <SolidColorBrush x:Key="SelectedNavigationButtonStroke" Color="{DynamicResource Color_333}"/>
+
+    <SolidColorBrush x:Key="NavigationButtonBrush" Color="{DynamicResource Color_888}"/>
+    <SolidColorBrush x:Key="MiddleNavigationButtonBrush" Color="{DynamicResource Color_BBB}"/>
+    <SolidColorBrush x:Key="SelectedNavigationButtonBrush" Color="{DynamicResource SelectedColor}"/>
+    <SolidColorBrush x:Key="DisabledNavigationButtonBrush" Color="{DynamicResource Color_BBB}"/>
+    
+</ResourceDictionary>

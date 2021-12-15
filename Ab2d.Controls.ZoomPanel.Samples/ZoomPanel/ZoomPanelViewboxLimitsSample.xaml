@@ -1,0 +1,36 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.ZoomPanel.ZoomPanelViewboxLimitsSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel" 
+    Loaded="Page_Loaded" Title="ZoomPanelViewboxLimitsSample">
+    <Grid>
+        <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <ab2d:ZoomPanel Name="ZoomPanel1"
+                            IsMouseWheelZoomEnabled="True"  
+                            IsAnimated="True" 
+                            AnimationDuration="0:0:0.2"
+                            IsViewboxLimited="{Binding ElementName=IsViewboxLimitedCheckBox, Path=IsChecked}"
+                            ViewboxLimits="{Binding ElementName=ViewboxLimitsCombobox, Path=Text}"
+                            ViewboxMinSize="{Binding ElementName=ViewboxMinSizeCombobox, Path=Text}">
+                <Frame Name="ZoomPanelContentFrame" Source="/Resources/airbus.xaml" NavigationUIVisibility="Hidden"/>
+            </ab2d:ZoomPanel>
+        </ScrollViewer>            
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 20 0" Background="#AAFFFFFF">
+            <ab2d:ZoomController Name="TestZoomController3" HorizontalAlignment="Right" IsResetToLimits="True"/>
+            <CheckBox Margin="0 5 0 0" Name="IsViewboxLimitedCheckBox" IsChecked="True" HorizontalAlignment="Right">IsViewboxLimited</CheckBox>
+            <TextBlock Margin="0 5 0 0" HorizontalAlignment="Right">ViewboxLimits</TextBlock>
+            <ComboBox Name="ViewboxLimitsCombobox" SelectedIndex="0" Width="100" HorizontalAlignment="Right" IsEditable="True">
+                <ComboBoxItem>0 0 1 1</ComboBoxItem>
+                <ComboBoxItem>-0.5 -0.5 2 2</ComboBoxItem>
+                <ComboBoxItem>-1 -1 3 3</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Margin="0 5 0 0" HorizontalAlignment="Right">ViewboxMinSize</TextBlock>
+            <ComboBox Name="ViewboxMinSizeCombobox" SelectedIndex="0" Width="100" HorizontalAlignment="Right" IsEditable="True">
+                <ComboBoxItem>0.001 0.001</ComboBoxItem>
+                <ComboBoxItem>0.01 0.01</ComboBoxItem>
+                <ComboBoxItem>0.1 0.1</ComboBoxItem>
+                <ComboBoxItem>0.5 0.5</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</Page>

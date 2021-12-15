@@ -1,0 +1,30 @@
+﻿<Page x:Class="Ab2d.ZoomControlSample.MiniMap.ZoomPanelMiniMapSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab2d="clr-namespace:Ab2d.Controls;assembly=Ab2d.Controls.ZoomPanel"
+    Title="ZoomPanelMiniMapSample">
+    <Grid Name="MainGrid">
+        <ab2d:ZoomPanel Name="ZoomPanel1"
+                        Viewbox="0.15 0.18 0.46 0.46"
+                        IsMouseWheelZoomEnabled="False"  
+                        IsAnimated="True" IsPanningAnimated="False" 
+                        ZoomMode="None">
+            <Frame Name="ZoomPanelContentFrame" Source="/Resources/tiger.xaml" NavigationUIVisibility="Hidden"/>
+        </ab2d:ZoomPanel>
+
+        <Border Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" BorderBrush="Gray" BorderThickness="2">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <TextBlock FontWeight="Bold" Margin="0 0 0 2">ZoomPanelMiniMap:</TextBlock>
+                <ab2d:ZoomPanelMiniMap IsMovingViewboxEnabled="True" IsMouseWheelZoomEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <!--
+                NOTE:
+                By default the ZoomPanelMiniMap automatically discover the TargetZoomPanel. This is controller by IsAutoZoomPanelFindingEnabled property.
+                It can be also manually set by using TargetZoomPanelName or TargetZoomPanel properties - see below:
+                
+                <ab2d:ZoomPanelMiniMap TargetZoomPanelName="ZoomPanel1" IsMovingViewboxEnabled="True" IsMouseWheelZoomEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <ab2d:ZoomPanelMiniMap TargetZoomPanel="{Binding ElementName=ZoomPanel1}" IsMovingViewboxEnabled="True" IsMouseWheelZoomEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                -->
+            </StackPanel>
+        </Border>
+     </Grid>
+</Page>
