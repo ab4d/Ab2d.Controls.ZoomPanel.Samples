@@ -2,7 +2,7 @@
 
 ![Ab2d.Controls.ZoomPanel image](https://www.ab4d.com/images/Banner/Banner_ZoomPanel_intro.png)
 
-[Ab2d.Controls.ZoomPanel](https://www.ab4d.com/ZoomPanel.aspxx) is the ultimate zoom and pan control for WPF applications.
+[Ab2d.Controls.ZoomPanel](https://www.ab4d.com/ZoomPanel.aspx) is the ultimate zoom and pan control for WPF applications.
 
 ## Evaluation version info
 
