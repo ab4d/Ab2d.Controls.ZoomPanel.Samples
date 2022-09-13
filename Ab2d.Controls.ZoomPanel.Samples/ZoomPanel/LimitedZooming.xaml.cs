@@ -24,17 +24,17 @@ namespace Ab2d.ZoomControlSample.ZoomPanel
 
         private void ZoomPanel1_PreviewViewboxChanged(object sender, Ab2d.Controls.ViewboxChangedRoutedEventArgs e)
         {
-            double zoomFactor = ZoomPanel1.GetZoomFactor(e.NewViewboxValue);
+            double newZoomFactor = ZoomPanel1.GetZoomFactor(e.NewViewboxValue);
 
             // Limit the zoom in and out values to 10% and 500%
             // If outside this limits we will mark the change as handled and this will prevent the change in ZoomPanel
-            if (zoomFactor < 0.1 || zoomFactor > 5)
+            if (newZoomFactor < 0.1 || newZoomFactor > 5)
             {
                 // First check if we have already limited the zoom in the previous zoom event.
                 // In this case just prevent on changes done while zooming (this will not prevent only move events)
                 // Without this the user would still be able to move the content of ZoomPanel when zooming (it looks wrong)
-                if ((zoomFactor > 5 && e.OldViewboxValue.Width == 0.2) ||
-                    (zoomFactor < 0.1 && e.OldViewboxValue.Width == 10))
+                if ((newZoomFactor > 5 && e.OldViewboxValue.Width == 0.2) ||
+                    (newZoomFactor < 0.1 && e.OldViewboxValue.Width == 10))
                 {
                     e.Handled = true; // Prevent any change
                 }
@@ -42,12 +42,11 @@ namespace Ab2d.ZoomControlSample.ZoomPanel
                 {
                     // Here we will adjust the NewViewboxValue.Width and NewViewboxValue.Height
                     // To preserve the location we need to store the new center
-                    double centerX = e.OldViewboxValue.X + e.OldViewboxValue.Width / 2;
-                    double centerY = e.OldViewboxValue.Y + e.OldViewboxValue.Height / 2;
 
+                    // Limit width and height to 10 or 0.2
                     double newWidth, newHeight;
 
-                    if (zoomFactor < 0.1)
+                    if (newZoomFactor < 0.1)
                     {
                         newWidth = 10; // 10% = 10 times the whole content is shown
                         newHeight = 10;
@@ -58,7 +57,24 @@ namespace Ab2d.ZoomControlSample.ZoomPanel
                         newHeight = 0.2;
                     }
 
-                    e.NewViewboxValue = new Rect(centerX - newWidth/2, centerY - newHeight/2, newWidth, newHeight);
+                    // Get old and new center positions
+                    double oldCenterX = e.OldViewboxValue.X + e.OldViewboxValue.Width / 2;
+                    double oldCenterY = e.OldViewboxValue.Y + e.OldViewboxValue.Height / 2;
+
+                    double newCenterX = e.NewViewboxValue.X + e.NewViewboxValue.Width / 2;
+                    double newCenterY = e.NewViewboxValue.Y + e.NewViewboxValue.Height / 2;
+
+                    // To correctly calculate the NewViewboxValue we need to correctly move the center
+                    // Because we have not zoomed fully from the OldViewboxValue.Width to NewViewboxValue.Width we also must not fully move the center. 
+                    // We need to calculate the fraction for how much we actually zoomed (from 0 to 1; 0 = no zoom, we stay at OldViewboxValue; 1 = fully zoomed to NewViewboxValue)
+                    double actualWidthChangeFraction = Math.Abs(e.OldViewboxValue.Width - newWidth) / Math.Abs(e.NewViewboxValue.Width - e.OldViewboxValue.Width);
+
+                    // calculate center based on the zoom fraction
+                    double actualCenterX = oldCenterX + (newCenterX - oldCenterX) * actualWidthChangeFraction;
+                    double actualCenterY = oldCenterY + (newCenterY - oldCenterY) * actualWidthChangeFraction;
+
+                    // Now we have all data for NewViewboxValue: 
+                    e.NewViewboxValue = new Rect(actualCenterX - newWidth / 2, actualCenterY - newHeight / 2, newWidth, newHeight);
                 }
             }
         }
