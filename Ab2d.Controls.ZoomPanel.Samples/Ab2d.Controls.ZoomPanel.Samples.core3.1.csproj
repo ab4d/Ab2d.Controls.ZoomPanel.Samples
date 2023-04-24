@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ab2d.Controls.ZoomPanel" Version="6.0.8019" />    
+    <PackageReference Include="Ab2d.Controls.ZoomPanel" Version="6.1.8514" />    
   </ItemGroup>
 
   <ItemGroup>
